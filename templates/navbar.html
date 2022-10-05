@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body id="body-pd">
+<div class="l-navbar" id="navbar">
+    <nav class="nav">
+        <div>
+            <div class="nav__brand">
+                <ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
+                <a href="#" class="nav__logo"></a>
+            </div>
+            <div class="nav__list">
+                <a href="{% url 'VPHI:SUB01_01' %}" class="nav__link active">
+                    <ion-icon name="home-outline" class="nav__icon"></ion-icon>
+                    <span class="nav__name">메인</span>
+                </a>
+                <a href="{% url 'VPHI:SUB02_01' %}" class="nav__link">
+                    <ion-icon name="chatbubbles-outline" class="nav__icon"></ion-icon>
+                    <span class="nav__name">게시판</span>
+                </a>
+
+
+                <a href="{% url 'VPHI:SUB03_01' %}" class="nav__link">
+                    <ion-icon name="pie-chart-outline" class="nav__icon"></ion-icon>
+                    <span class="nav__name">통계</span>
+                </a>
+                <div id="menu_link" class="nav__link collapse">
+                    <ion-icon name="people-outline" class="nav__icon"></ion-icon>
+                    <span class="nav__name">물류</span>
+
+                    <ion-icon name="chevron-down-outline" class="collapse__link"></ion-icon>
+
+                    <ul class="collapse__menu">
+                        <a href="{% url 'VPHI:SUB04_01' %}" class="collapse__sublink">TEST</a>
+                        <a href="{% url 'VPHI:SUB04_02' %}" class="collapse__sublink">TEST</a>
+                        <a href="{% url 'VPHI:SUB04_03' %}" class="collapse__sublink">TEST</a>
+                    </ul>
+                </div>
+                <a href="{% url 'VPHI:SUB05_01' %}" class="nav__link">
+                    <ion-icon name="settings-outline" class="nav__icon"></ion-icon>
+                    <span class="nav__name">설정</span>
+                </a>
+            </div>
+        </div>
+
+        {#        <a href="#" class="nav__link">#}
+        {#            <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>#}
+        {#            <span class="nav__name">Log Out</span>#}
+        {#        </a>#}
+    </nav>
+</div>
+<!-- ===== IONICONS ===== -->
+</body>
+<script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+
+<script>
+    /*===== EXPANDER MENU  =====*/
+    const showMenu = (toggleId, navbarId, bodyId) => {
+        const toggle = document.getElementById(toggleId),
+            navbar = document.getElementById(navbarId),
+            bodypadding = document.getElementById(bodyId)
+
+        if (toggle && navbar) {
+            toggle.addEventListener('click', () => {
+
+                navbar.classList.toggle('expander')
+
+                bodypadding.classList.toggle('body-pd')
+            })
+        }
+    }
+    showMenu('nav-toggle', 'navbar', 'body-pd')
+
+
+    /*===== LINK ACTIVE  =====*/
+    const linkColor = document.querySelectorAll('.nav__link')
+
+    function colorLink() {
+        linkColor.forEach(l => l.classList.remove('active'))
+        this.classList.add('active')
+    }
+
+    linkColor.forEach(l => l.addEventListener('click', colorLink))
+
+
+    /*===== COLLAPSE MENU  =====*/
+    const linkCollapse = document.getElementsByClassName('collapse__link')
+    var i
+
+    for (i = 0; i < linkCollapse.length; i++) {
+        linkCollapse[i].addEventListener('click', function () {
+            const collapseMenu = this.nextElementSibling
+            collapseMenu.classList.toggle('showCollapse')
+
+            const rotate = collapseMenu.previousElementSibling
+            rotate.classList.toggle('rotate')
+        })
+    }
+
+
+</script>
+
+</html>

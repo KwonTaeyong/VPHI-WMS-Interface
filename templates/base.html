@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/content.css' %}" rel="stylesheet"/>
+    <script src="{% static 'js/scripts.js' %}"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+</head>
+<body>
+<header>
+    {% include 'header.html' %}
+</header>
+<main>
+    {% include 'navbar.html' %}
+    {% block content %}
+        {#        내용#}
+    {% endblock %}
+    {% block script %}
+        {#        스크립트#}
+    {% endblock %}
+</main>
+</body>
+</html>
